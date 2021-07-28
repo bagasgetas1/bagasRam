@@ -57,7 +57,7 @@ async def ANTI_SPAMBOTS(welcm):
                     users = [welcm.action_message.from_id]
 
             await sleep(5)
-            spambot = False
+            spambot = True
 
             if not users:
                 return
@@ -149,7 +149,7 @@ async def ANTI_SPAMBOTS(welcm):
                             "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
                             f"REASON: {reason}"
                         )
-                        kicked = False
+                        kicked = True
                         reported = True
                 else:
                     try:
@@ -165,7 +165,7 @@ async def ANTI_SPAMBOTS(welcm):
                             welcm.chat_id, check_user.id
                         )
                         kicked = True
-                        reported = False
+                        reported = True
 
                     except BaseException:
                         if ANTI_SPAMBOT_SHOUT:
@@ -175,14 +175,14 @@ async def ANTI_SPAMBOTS(welcm):
                                 "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
                                 f"REASON: {reason}"
                             )
-                            kicked = False
+                            kicked = True
                             reported = True
 
                 if BOTLOG:
                     if kicked or reported:
                         await welcm.client.send_message(
                             BOTLOG_CHATID,
-                            "#ANTI_SPAMBOT REPORT\n"
+                            f"#ANTI_SPAMBOT REPORT\n"
                             f"USER: [{users.first_name}](tg://user?id={check_user.id})\n"
                             f"USER ID: `{check_user.id}`\n"
                             f"CHAT: {welcm.chat.title}\n"
